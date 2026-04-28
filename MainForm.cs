@@ -300,6 +300,17 @@ namespace Isolator
                                 // If the blank object exists
                                 if (NullHelper.Exists(blank))
                                 {
+                                    // get the height and width
+                                    int width = OutputWidthControl.IntValue;
+                                    int height = OutputHeightControl.IntValue;
+
+                                    // if the blank image is not the right size
+                                    if ((blank.Width != width) || (blank.Height != height))
+                                    {
+                                        // Resize the blank
+                                        blank = blank.Resize(OutputHeightControl.IntValue, OutputWidthControl.IntValue);    
+                                    }
+
                                     // copy the sub image onto the blank
                                     blank.CopySubImage(resizedImage, outputPoint);
 
@@ -510,20 +521,18 @@ namespace Isolator
             // Setup defaults for testing
             SourceImageControl.Text = @"C:\VideoProjects\Cards2026\Aces.png";
             OutputWidthControl.Text = "400";
-            OutputHeightControl.Text = "560";
-            OutputFolderControl.Text = @"C:\VideoProjects\Cards2026\Output";
-            OutputFileNameControl.Text = "AceClubs.png";
+            OutputHeightControl.Text = "560";            
             HorizontalBorderControl.Text = "2";
             VerticalBorderControl.Text = "2";
-            LeftStartControl.Text = "45";
-            RightStartControl.Text = "990";
-            TopStartControl.Text = "358";
-            BottomStartControl.Text = "1682";
+            LeftStartControl.Text = "0";
+            RightStartControl.Text = "0";
+            TopStartControl.Text = "0";
+            BottomStartControl.Text = "0";
             Canvas.BackgroundImageLayout = ImageLayout.Stretch;
             Canvas.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            // For bouding box
-            // === Selection / Marching Ants Initialization ===
+            // For bouding box selection / Marching Ants Initialization
+            // 
             controlSelectionRect = Rectangle.Empty;
             dragStartPoint = Point.Empty;
             lastRubberBandRect = Rectangle.Empty;
