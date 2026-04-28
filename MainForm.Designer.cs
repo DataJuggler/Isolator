@@ -468,6 +468,7 @@
             Controls.Add(RightStartControl);
             Controls.Add(LeftStartControl);
             Controls.Add(Canvas);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Isolator";
